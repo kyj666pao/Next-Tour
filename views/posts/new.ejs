@@ -1,0 +1,23 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+<h1><%= title %></h1>
+<main>
+    <div class="form">
+        <form action="/" method="POST">
+            <label for="topic">Topic:</label>
+            <input type="text" name="topic" id="topic" required>
+            <label for="photo">Photo(url):</label>
+            <input type="text" name="photo" id="photo">
+            <!-- <label for="date">Date</label>
+            <input type="date" name="date" id="date"> -->
+            <label for="location">Location</label>
+            <input type="text" name="location" id="location">
+            <label for="content">Content:</label>
+            <textarea name="content" id="content" cols="30" rows="10"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+  
+</main>
+
+<%- include('../partials/footer') %>
