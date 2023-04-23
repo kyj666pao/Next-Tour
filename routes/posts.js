@@ -27,5 +27,19 @@ router.get("/new", isLoggedIn, (req,res) => {
     })
 })
 
+// POST "/"
+router.post("/", isLoggedIn, (req,res) => {
+  req.body.author = req.user.profile._id;
+  // req.body.date = new Date()
+  console.log(req.body)
+  Post.create(req.body)
+    .then(posts => {
+      res.redirect("/posts")
+    })
+    .catch(err => {
+      console.log(err)
+      res.redirect("/")
+    })
+})
 
 export { router }
