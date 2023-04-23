@@ -1,10 +1,10 @@
 import { Router } from "express";
-
+import { isLoggedIn } from "../middleware/middleware.js"
 const router = Router()
 
 import { Post } from "../models/post.js"
 
-// GET "/"
+// GET "/post"
 router.get("/", (req,res) => {
     // res.send("this is /post page")
     Post.find()
@@ -19,5 +19,13 @@ router.get("/", (req,res) => {
         res.redirect("/")
       })
 })
+
+// GET "/post/new"
+router.get("/new", isLoggedIn, (req,res) => {
+    res.render("posts/new", {
+        title: "Add Post"
+    })
+})
+
 
 export { router }
