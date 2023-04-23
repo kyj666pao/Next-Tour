@@ -1,0 +1,17 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<main>
+  <% posts.forEach(post => { %>
+    <div class="post">
+        <h3><%= post.topic %></h3>
+        <img src="<%= post.photo %>" alt="">
+        <div class="discribe">
+          <h4><%= post.location %></h4>
+          <h5><%= post.date %></h5>
+        </div>
+    </div>
+  <% }); %>
+</main>
+
+<%- include('../partials/footer') %>
