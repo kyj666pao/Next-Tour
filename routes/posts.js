@@ -154,4 +154,9 @@ router.post("/:postId/comments", isLoggedIn, (req,res) => {
     })
 })
 
+// GET "/posts/:postId/comments/:commentId/edit"
+router.get(":postId/comments/:commentId/edit", isLoggedIn, (req,res)=> {
+  
+})
+
 export { router }

@@ -37,6 +37,11 @@
       <img src="<%= comment.author.avatar %>" alt="<%= comment.author.name %>'s avatar">
       <p><%= comment.author.name %></p>
       <p><%= comment.content %></p>
+      <% if (comment.author.equals(user?.profile._id)) { %>
+        <a href="/posts/<%= posts._id %>/comments/<%= comment._id %>/edit">
+          <button>Edit</button>
+        </a>
+      <% } %>
     </div>
   <% }) %>
 </main>
