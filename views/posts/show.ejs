@@ -23,7 +23,7 @@
   <% if (user) { %>
     <div class="add-comment">
       <form action="/posts/<%= posts._id %>/comments" method="POST">
-        <textarea name="comment" id="comment-text" cols="30" rows="10" placeholder="Add comment here"></textarea>
+        <textarea name="content" id="comment-text" cols="30" rows="10" placeholder="Add comment here"></textarea>
         <button type="submit">Submit</button>
       </form>
     </div>

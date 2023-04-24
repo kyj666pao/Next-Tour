@@ -136,7 +136,9 @@ router.post("/:postId/comments", isLoggedIn, (req,res) => {
   Post.findById(postId)
     .then(posts => {
       req.body.author = req.user.profile._id
+      console.log(req.body)
       posts.comments.push(req.body)
+      console.log(posts)
       posts.save()
         .then(() => {
           res.redirect(`/posts/${postId}`)
