@@ -102,6 +102,29 @@ router.put("/:postId", isLoggedIn, (req,res) => {
 })
 
 // DELETE "/posts/:postId"
-
+router.delete("/:postId", isLoggedIn, (req,res) => {
+  let { postId } = req.params
+  Post.findById(postId)
+    .then( posts => {
+      if (posts.author.equals(req.user.profile._id)) {
+        posts.deleteOne()
+        .then(() => {
+          res.redirect("/posts")
+        })
+        .catch(err => {
+          console.log(err)
+          // res.redirect("/")
+          res.send("Failed to delete the post")
+        })
+      } else {
+        throw new Error("🚫 Not authorized 🚫")
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      // res.redirect("/")
+      res.send("Post Id is not found")
+    })
+})
 
 export { router }
