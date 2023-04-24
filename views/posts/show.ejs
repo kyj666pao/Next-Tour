@@ -32,6 +32,11 @@
       <p>Please login to leave comment</p>
     </div>
   <% } %>
+  <% posts.comments.forEach(comment => { %>
+    <div class="comment">
+      <p><%= comment.content %></p>
+    </div>
+  <% }) %>
 </main>
 
 <%- include('../partials/footer') %>
