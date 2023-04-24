@@ -34,6 +34,8 @@
   <% } %>
   <% posts.comments.forEach(comment => { %>
     <div class="comment">
+      <img src="<%= comment.author.avatar %>" alt="<%= comment.author.name %>'s avatar">
+      <p><%= comment.author.name %></p>
       <p><%= comment.content %></p>
     </div>
   <% }) %>
