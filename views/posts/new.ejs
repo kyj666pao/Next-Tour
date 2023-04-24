@@ -2,18 +2,24 @@
 <%- include('../partials/nav') %>
 <h1><%= title %></h1>
 <main>
-    <div class="form">
-        <form action="/posts" method="POST">
-            <label for="topic">Topic:</label>
-            <input type="text" name="topic" id="topic" required>
-            <label for="photo">Photo(url):</label>
-            <input type="text" name="photo" id="photo">
-            <!-- <label for="date">Date</label>
-            <input type="date" name="date" id="date"> -->
-            <label for="location">Location</label>
-            <input type="text" name="location" id="location">
-            <label for="content">Content:</label>
-            <textarea name="content" id="content" cols="30" rows="10"></textarea>
+    <div >
+        <form action="/posts" method="POST" class="form">
+            <div class="QA">
+                <label for="topic">Topic:</label>
+                <input type="text" name="topic" id="topic" required>
+            </div>
+            <div class="QA">
+                <label for="photo">Photo(url):</label>
+                <input type="text" name="photo" id="photo">
+            </div>
+            <div class="QA">
+                <label for="location">Location</label>
+                <input type="text" name="location" id="location">
+            </div>
+            <div class="QA">
+                <label for="content">Content:</label>
+            <textarea name="content" id="content" rows="10"></textarea>
+            </div>
             <button type="submit">Submit</button>
         </form>
     </div>

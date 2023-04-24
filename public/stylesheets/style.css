@@ -12,8 +12,8 @@ html {
 }
 
 body {
-  background-color: #1a1a1a;
-  color: #f6f6f6;
+  background-color: #f6f6f6;
+  color: #1a1a1a;
   /* Use a system font, if none are available use any found sans-sarif font */
   font-family: system-ui, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 
     'Helvetica Neue', sans-serif;
@@ -21,8 +21,8 @@ body {
 }
 
 nav {
-  background-color: #f6f6f6;
-  color: #1a1a1a;
+  background-color: #1a1a1a;
+  color: #f6f6f6;
   display: flex;
   align-items: center;
   padding: 10px;
@@ -62,5 +62,8 @@ a {
 
 .nav-r a button {
   border: none;
-  background-color: whitesmoke;
+  background-color: #1a1a1a;
+  color: whitesmoke
 }
+
+

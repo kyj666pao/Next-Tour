@@ -1,17 +1,18 @@
-<%- include('../partials/html-head') %>
-<%- include('../partials/nav') %>
+<%- include('../partials/html-head') %> <%- include('../partials/nav') %>
 <h1><%= title %></h1>
 <main>
-  <% posts.forEach(post => { %>
+  <div class="all-post">
+    <% posts.forEach(post => { %>
     <div class="post">
-        <h3><a href="/posts/<%= post._id %>"><%= post.topic %></a></h3>
-        <img src="<%= post.photo %>" alt="">
-        <div class="discribe">
-          <h4><%= post.location %></h4>
-          <h5><%= post.date %></h5>
-        </div>
+      <h3><a href="/posts/<%= post._id %>"><%= post.topic %></a></h3>
+      <img src="<%= post.photo %>" alt="" />
+      <div class="discribe">
+        <h4><%= post.location %></h4>
+        <h5><%= post.date.toISOString().slice(0,10) %></h5>
+      </div>
     </div>
-  <% }); %>
+    <% }); %>
+  </div>
 </main>
 
 <%- include('../partials/footer') %>
