@@ -59,7 +59,7 @@ router.get("/:postId", (req,res) => {
     })
 })
 
-// GET "/posts/:postId/edit"
+// GET "/posts/:postId/edit" postsCtrl.edit
 router.get("/:postId/edit", isLoggedIn, (req,res) => {
   let { postId } = req.params
   Post.findById(postId)
@@ -72,6 +72,32 @@ router.get("/:postId/edit", isLoggedIn, (req,res) => {
     .catch(err => {
       console.log(err)
       res.redirect("/")
+    })
+})
+
+// PUT "/posts/:postsId" postsCtrl.update
+router.put("/:postsId", isLoggedIn, (req,res) => {
+  let { postsId } = req.params
+  Post.findById(postsId)
+    .then( posts => {
+      if (posts.author.equals(req.user.profile._id)) {
+        posts.updateOne(req.body)
+          .then(() => {
+            res.redirect(`/posts/${postsId}`)
+          })
+          .catch(err => {
+            console.log(err)
+            // res.redirect("/")
+            res.send("Failed to updated the post")
+          })
+      } else {
+        throw new Error("🚫 Not authorized 🚫")
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      // res.redirect("/")
+      res.send("Post Id is not found")
     })
 })
 
