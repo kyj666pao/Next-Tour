@@ -4,7 +4,7 @@ const router = Router()
 
 import { Post } from "../models/post.js"
 
-// GET "/post"
+// GET "/posts" postsCtrl.index
 router.get("/", (req,res) => {
     // res.send("this is /post page")
     Post.find()
@@ -20,14 +20,14 @@ router.get("/", (req,res) => {
       })
 })
 
-// GET "/post/new"
+// GET "/posts/new" postsCtrl.new
 router.get("/new", isLoggedIn, (req,res) => {
     res.render("posts/new", {
         title: "Add Post"
     })
 })
 
-// POST "/"
+// POST "/posts" postsCtrl.create
 router.post("/", isLoggedIn, (req,res) => {
   req.body.author = req.user.profile._id;
   // req.body.date = new Date()
@@ -40,6 +40,24 @@ router.post("/", isLoggedIn, (req,res) => {
       console.log(err)
       res.redirect("/")
     })
+})
+
+// GET "posts/:postId" postsCtrl.show 
+router.get("/:postId", (req,res) => {
+  let { postId } = req.params
+  Post.findById(postId)
+  .populate({path: "author"})
+    .then(posts => {
+      res.render("posts/show", {
+        posts,
+        title: "The Tour"
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      res.redirect("/")
+    })
+
 })
 
 export { router }
