@@ -42,7 +42,7 @@ router.post("/", isLoggedIn, (req,res) => {
     })
 })
 
-// GET "posts/:postId" postsCtrl.show 
+// GET "/posts/:postId" postsCtrl.show 
 router.get("/:postId", (req,res) => {
   let { postId } = req.params
   Post.findById(postId)
@@ -57,7 +57,9 @@ router.get("/:postId", (req,res) => {
       console.log(err)
       res.redirect("/")
     })
-
 })
+
+// GET "/posts/:postId/edit"
+
 
 export { router }
