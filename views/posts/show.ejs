@@ -1,0 +1,15 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+<h1><%= title %></h1>
+<main>
+  <div class="post">
+    <h2><%= posts.topic %></h2>
+    <h5><%= posts.date %></h5>
+    <img src="<%= posts.photo %>" alt="">
+    <p><%= posts.content %></p>
+    <h4 class="author">Author: <%= posts.author.name %></h4>
+    <h4><%= posts.location %></h4>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>
