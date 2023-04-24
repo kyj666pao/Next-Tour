@@ -7,7 +7,7 @@
           action="/posts/<%= posts._id %>/comments/<%= comment._id %>?_method=PUT" 
           method="POST">
             <label for="content">Content:</label>
-            <textarea name="content" id="content" cols="30" rows="10" ><%= posts.content %></textarea>
+            <textarea name="content" id="content" cols="30" rows="10" ><%= comment.content %></textarea>
             <button type="submit">Submit</button>
         </form>
     </div>

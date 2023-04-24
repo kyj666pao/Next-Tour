@@ -181,4 +181,60 @@ router.get("/:postId/comments/:commentId/edit", isLoggedIn, (req,res)=> {
     })
 })
 
+// PUT "/posts/:postId/comments/:commentId"
+router.put("/:postId/comments/:commentId", isLoggedIn, (req,res) => {
+  let { postId, commentId } = req.params
+  console.log("postId:" , postId)
+  console.log("commentId", commentId)
+  Post.findById(postId)
+    .then(posts => {
+      console.log(posts)
+      const comment = posts.comments.id(commentId)
+      console.log(comment)
+      if (comment.author.equals(req.user.profile._id)) {
+        comment.set(req.body)
+        posts.save()
+        .then(() => {
+          res.redirect(`/posts/${postId}`)
+        })
+        .catch(err => {
+          console.log(err)
+          res.send("Failed to update comment")
+        })
+      } else {
+        throw new Error("🚫 Not authorized 🚫")
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      res.send("This post is not Found")
+    })
+})
+
+// DELETE "/:postsId/comments/:commentId"
+router.delete("/:postId/comments/:commentId", isLoggedIn, (req,res) => {
+  let { postId, commentId } = req.params
+  Post.findById(postId)
+    .then(posts => {
+      const comment = posts.comments.id(commentId)
+      console.log(comment)
+      if (comment.author.equals(req.user.profile._id)) {
+        posts.comments.remove(comment)
+        posts.save()
+          .then(() => {
+            res.redirect(`/posts/${postId}`)
+          })
+          .catch(err => {
+            res.send("Failed to delete this comment")
+          })
+      } else {
+        throw new Error("🚫 Not authorized 🚫")
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      res.send("This post is not Found")
+    })
+})
+
 export { router }
