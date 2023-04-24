@@ -51,6 +51,7 @@ router.get("/:postId", (req,res) => {
     {path: "comments.author"}
   ])
     .then(posts => {
+      console.log(posts)
       res.render("posts/show", {
         posts,
         title: "The Tour"
@@ -155,8 +156,29 @@ router.post("/:postId/comments", isLoggedIn, (req,res) => {
 })
 
 // GET "/posts/:postId/comments/:commentId/edit"
-router.get(":postId/comments/:commentId/edit", isLoggedIn, (req,res)=> {
-  
+router.get("/:postId/comments/:commentId/edit", isLoggedIn, (req,res)=> {
+  let { postId, commentId} = req.params
+  console.log("postId:" , postId)
+  console.log("commentId", commentId)
+  Post.findById(postId)
+    .then(posts => {
+      console.log(posts)
+      const comment = posts.comments.id(commentId)
+      console.log(comment)
+      if (comment.author.equals(req.user.profile._id)) {
+        res.render("posts/editComment", {
+          posts,
+          comment,
+          title: "Edit Comment"
+        })
+      } else {
+        throw new Error("🚫 Not authorized 🚫")
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      res.send("This post is not Found")
+    })
 })
 
 export { router }

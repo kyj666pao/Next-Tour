@@ -1,0 +1,17 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+<h1><%= title %></h1>
+<main>
+    <div class="form">
+        <form 
+          action="/posts/<%= posts._id %>/comments/<%= comment._id %>?_method=PUT" 
+          method="POST">
+            <label for="content">Content:</label>
+            <textarea name="content" id="content" cols="30" rows="10" ><%= posts.content %></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+  
+</main>
+
+<%- include('../partials/footer') %>
