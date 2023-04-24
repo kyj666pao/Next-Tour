@@ -11,12 +11,22 @@
     <h4><%= posts.location %></h4>
   </div>
   <% if(posts.author.equals(user?.profile._id)) { %>
+    <div>
     <a href="/posts/<%= posts._id %>/edit"><button>
         Edit This Post
     </button></a>
     <form action="/posts/<%= posts._id %>?_method=DELETE" method="POST">
       <button type="submit">Delete This Post</button>
     </form>
+  </div>
+  <% } %>
+  <% if (user) { %>
+    <div class="add-comment">
+      <form action="/posts/<%= posts._id %>/comments" method="POST">
+        <textarea name="comment" id="comment-text" cols="30" rows="10" placeholder="Add comment here"></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   <% } %>
 </main>
 
