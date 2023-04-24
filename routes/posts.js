@@ -76,14 +76,14 @@ router.get("/:postId/edit", isLoggedIn, (req,res) => {
 })
 
 // PUT "/posts/:postsId" postsCtrl.update
-router.put("/:postsId", isLoggedIn, (req,res) => {
-  let { postsId } = req.params
-  Post.findById(postsId)
+router.put("/:postId", isLoggedIn, (req,res) => {
+  let { postId } = req.params
+  Post.findById(postId)
     .then( posts => {
       if (posts.author.equals(req.user.profile._id)) {
         posts.updateOne(req.body)
           .then(() => {
-            res.redirect(`/posts/${postsId}`)
+            res.redirect(`/posts/${postId}`)
           })
           .catch(err => {
             console.log(err)
@@ -100,6 +100,8 @@ router.put("/:postsId", isLoggedIn, (req,res) => {
       res.send("Post Id is not found")
     })
 })
+
+// DELETE "/posts/:postId"
 
 
 export { router }
