@@ -60,6 +60,20 @@ router.get("/:postId", (req,res) => {
 })
 
 // GET "/posts/:postId/edit"
+router.get("/:postId/edit", isLoggedIn, (req,res) => {
+  let { postId } = req.params
+  Post.findById(postId)
+    .then(posts => {
+      res.render("posts/edit", {
+        posts,
+        title: "Edit Post"
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      res.redirect("/")
+    })
+})
 
 
 export { router }
