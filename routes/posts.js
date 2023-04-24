@@ -128,6 +128,25 @@ router.delete("/:postId", isLoggedIn, (req,res) => {
 })
 
 // POST "/posts/:postID/comments"
-
+router.post("/:postId/comments", isLoggedIn, (req,res) => {
+  let { postId } = req.params
+  Post.findById(postId)
+    .then(posts => {
+      req.body.author = req.user.profile._id
+      posts.comments.push(req.body)
+      posts.save()
+        .then(() => {
+          res.redirect(`/posts/${postId}`)
+        })
+        .catch(err => {
+          console.log(err)
+          res.send("Failed to add comment")
+        })
+    })
+    .catch(err => {
+      console.log(err)
+      res.send("This post is not found")
+    })
+})
 
 export { router }
