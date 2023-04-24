@@ -46,7 +46,10 @@ router.post("/", isLoggedIn, (req,res) => {
 router.get("/:postId", (req,res) => {
   let { postId } = req.params
   Post.findById(postId)
-  .populate({path: "author"})
+  .populate([
+    {path: "author"},
+    {path: "comments.author"}
+  ])
     .then(posts => {
       res.render("posts/show", {
         posts,
