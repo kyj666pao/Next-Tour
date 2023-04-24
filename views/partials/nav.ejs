@@ -4,9 +4,14 @@
 </head>
 <body>
   <nav>
-    <a href="/posts">All Post</a>
-    <a href="/posts/new">Add post</a>
-    <% if (user) { %>
+    <div class="nav-l">
+      <a href="/posts" class="<%= title=="All Post" ? "active" : "" %>">All Post</a>
+      <a href="/posts/new" class="<%= title=="Add Post" ? "active" : "" %>">Add Post</a>
+      <a href="/destinations" class="<%= title=="Destination" ? "active" : "" %>">Add Post</a>
+    </div>
+    <div class="nav-r">
+      <% if (user) { %>
+      <a href="/profile">Profile</a>
       <a href="/auth/logout" class="right">
         <button type="submit">Logout</button>
       </a>
@@ -28,4 +33,5 @@
         data-logo_alignment="left"
       ></div>
     <% } %>
+    </div>
   </nav>
