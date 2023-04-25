@@ -1,8 +1,9 @@
 <%- include('../partials/html-head') %> <%- include('../partials/nav') %>
 <h1><%= title %></h1>
 <main>
-  <div class="form">
+  <div >
     <form
+      class="form"
       action="/posts/<%= posts._id %>/comments/<%= comment._id %>?_method=PUT"
       method="POST"
     >
