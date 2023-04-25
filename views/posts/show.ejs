@@ -10,7 +10,7 @@
     <h4><%= posts.location %></h4>
   </div>
   <% if(posts.author.equals(user?.profile._id)) { %>
-  <div>
+  <div class="author-edit-delete">
     <a href="/posts/<%= posts._id %>/edit"><button>Edit This Post</button></a>
     <form action="/posts/<%= posts._id %>?_method=DELETE" method="POST">
       <button type="submit">Delete This Post</button>
@@ -22,8 +22,7 @@
       <textarea
         name="content"
         id="comment-text"
-        cols="30"
-        rows="10"
+        rows="5"
         placeholder="Add comment here"
       ></textarea>
       <button type="submit">Submit</button>
@@ -31,27 +30,35 @@
   </div>
   <% } else { %>
   <div class="add-comment">
-    <p>Please login to leave comment</p>
+    <p style="color: red">Please login to leave comment . . .</p>
   </div>
   <% } %> <% posts.comments.forEach(comment => { %>
   <div class="comment">
-    <img
-      src="<%= comment.author.avatar %>"
-      alt="<%= comment.author.name %>'s avatar"
-    />
-    <p><%= comment.author.name %></p>
-    <p><%= comment.content %></p>
-    <% if (comment.author.equals(user?.profile._id)) { %>
-    <a href="/posts/<%= posts._id %>/comments/<%= comment._id %>/edit">
-      <button>Edit</button>
-    </a>
-    <form
-      action="/posts/<%= posts._id %>/comments/<%= comment._id %>?_method=DELETE"
-      method="POST"
-    >
-      <button type="submit">Delete</button>
-    </form>
-    <% } %>
+    <div class="comment-author">
+      <img
+        src="<%= comment.author.avatar %>"
+        alt="<%= comment.author.name %>'s avatar"
+      />
+      <p><%= comment.author.name %></p>
+    </div>
+    <div class="comment-text">
+      <div class="comment-textarea">
+        <p><%= comment.content %></p>
+      </div>
+      <% if (comment.author.equals(user?.profile._id)) { %>
+      <div class="comment-edit-delete">
+        <a href="/posts/<%= posts._id %>/comments/<%= comment._id %>/edit">
+          <button>Edit this comment</button>
+        </a>
+        <form
+          action="/posts/<%= posts._id %>/comments/<%= comment._id %>?_method=DELETE"
+          method="POST"
+        >
+          <button type="submit">Delete this comment</button>
+        </form>
+      </div>
+      <% } %>
+    </div>
   </div>
   <% }) %>
 </main>
