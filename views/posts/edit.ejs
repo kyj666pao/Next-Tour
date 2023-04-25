@@ -1,25 +1,45 @@
-<%- include('../partials/html-head') %>
+<%- include('../partials/html-head') %> 
 <%- include('../partials/nav') %>
+
 <h1><%= title %></h1>
 <main>
-    <div class="form">
-        <form 
-          action="/posts/<%= posts._id %>?_method=PUT" 
-          method="POST">
-            <label for="topic">Topic:</label>
-            <input type="text" name="topic" id="topic" value="<%= posts.topic %>" required >
-            <label for="photo">Photo(url):</label>
-            <input type="text" name="photo" id="photo" value="<%= posts.photo %>">
-            <!-- <label for="date">Date</label>
-            <input type="date" name="date" id="date"> -->
-            <label for="location">Location</label>
-            <input type="text" name="location" id="location" value="<%= posts.location %>">
-            <label for="content">Content:</label>
-            <textarea name="content" id="content" cols="30" rows="10" ><%= posts.content %></textarea>
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-  
+  <div>
+    <form
+      class="form"
+      action="/posts/<%= posts._id %>?_method=PUT"
+      method="POST"
+    >
+      <div class="QA">
+        <label for="topic">Topic:</label>
+        <input
+          type="text"
+          name="topic"
+          id="topic"
+          value="<%= posts.topic %>"
+          required
+        />
+      </div>
+      <div class="QA">
+        <label for="photo">Photo(url):</label>
+        <input type="text" name="photo" id="photo" value="<%= posts.photo %>" />
+      </div>
+      <div class="QA">
+        <label for="location">Location</label>
+        <input
+          type="text"
+          name="location"
+          id="location"
+          value="<%= posts.location %>"
+        />
+      </div>
+      <div class="QA">
+        <label for="content">Content:</label>
+        <textarea name="content" id="content" cols="30" rows="10"><%= posts.content %></textarea
+        >
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
 </main>
 
 <%- include('../partials/footer') %>
