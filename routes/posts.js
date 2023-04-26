@@ -69,10 +69,12 @@ router.get("/:postId", (req,res) => {
     {path: "comments.author"}
   ])
     .then(posts => {
+      const isSelf = posts.author.equals(req.user.profile._id)
       console.log(posts)
       res.render("posts/show", {
         posts,
-        title: "The Tour"
+        title: "The Tour",
+        isSelf,
       })
     })
     .catch(err => {
