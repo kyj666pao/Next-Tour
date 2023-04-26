@@ -21,7 +21,7 @@
           type="text"
           name="photo"
           id="photo"
-          placeholder="Link(url) of best photo of this trip "
+          placeholder="Link(url) of best photo of this trip"
         />
       </div>
       <div class="QA">
@@ -30,8 +30,15 @@
           type="text"
           name="location"
           id="location"
-          placeholder="Where is the destination﻿"
+          placeholder="Where is the destination"
         />
+      </div>
+      <div class="QA">
+        <label for="state">State:</label>
+        <select name="state" id="state"></select>
+          <% state.forEach(state => { %>
+            <option value="<%= state %>"><%= state %></option>
+          <% }) %>
       </div>
       <div class="QA">
         <label for="content">Content:</label>
@@ -39,7 +46,7 @@
           name="content"
           id="content"
           rows="10"
-          placeholder="Share something interesting﻿"
+          placeholder="Share something interesting"
         ></textarea>
       </div>
       <button type="submit">Submit</button>

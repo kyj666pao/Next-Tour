@@ -33,6 +33,14 @@
         />
       </div>
       <div class="QA">
+        <label for="state">State:</label>
+        <select name="state" id="state"></select>
+          <option value="<%= posts.state %>" selected><%= posts.state %></option>
+          <% state.forEach(state => { %>
+            <option value="<%= state %>"><%= state %></option>
+          <% }) %>
+      </div>
+      <div class="QA">
         <label for="content">Content:</label>
         <textarea name="content" id="content" cols="30" rows="10"><%= posts.content %></textarea
         >

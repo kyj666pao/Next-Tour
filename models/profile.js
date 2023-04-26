@@ -7,7 +7,10 @@ const profileSchema = new Schema({
   avatar: String,
   myPost: [{
     type: Schema.Types.ObjectId, ref: "Post"
-  }]
+  }],
+  savedPost: [{
+    type: Schema.Types.ObjectId, ref: "Post"
+  }],
 }, {
   timestamps: true
 })
