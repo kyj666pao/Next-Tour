@@ -6,8 +6,6 @@ import { Profile } from "../models/profile.js"
 
 //GET "/profile" profile.index
 router.get("/", isLoggedIn, (req,res) => {
-    // let { profileId } = req.params
-//  Profile.findById(profileId)
 Profile.find()
     .then(profiles => {
         // res.send("this is profile")

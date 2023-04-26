@@ -3,6 +3,7 @@ import { isLoggedIn } from "../middleware/middleware.js"
 const router = Router()
 
 import { Post } from "../models/post.js"
+import { Profile } from "../models/profile.js"
 
 // GET "/posts" postsCtrl.index
 router.get("/", (req,res) => {
@@ -29,12 +30,28 @@ router.get("/new", isLoggedIn, (req,res) => {
 
 // POST "/posts" postsCtrl.create
 router.post("/", isLoggedIn, (req,res) => {
-  req.body.author = req.user.profile._id;
-  // req.body.date = new Date()
+  let userId = req.user.profile._id;
+  req.body.author = userId
   console.log(req.body)
   Post.create(req.body)
     .then(posts => {
-      res.redirect("/posts")
+      Profile.findById(userId)
+        .then(profiles => {
+          profiles.myPost.push(posts._id)
+          console.log("profiles:", profiles)
+          profiles.save()
+            .then(()=>{
+              res.redirect("/posts")
+            })
+            .catch(err => {
+            console.log(err)
+            res.send("post is not saved into profile.myPost")
+            })
+        })
+        .catch(err => {
+          console.log(err)
+          res.send("userId is not found")
+        })
     })
     .catch(err => {
       console.log(err)
