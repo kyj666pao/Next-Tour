@@ -1,8 +1,9 @@
 <%- include('../partials/html-head') %>
+  <link rel="stylesheet" href="/stylesheets/profile.css"  />
 <%- include('../partials/nav') %>
 
-<main>
-  <div class="profile-left">
+<main class="profile">
+  <div id="profile-left">
     <img src="<%= profile.avatar %>" alt="<%= profile.name %>'s avatar">
     <h4><%= profile.name %></h4>
     <% if (!isSelf) { %>
@@ -10,18 +11,18 @@
         <button type="submit">Follow</button>
       </form>
     <% } %>
-    <h3>Following:</h3>
+    <h3>Following List:</h3>
     <% profile.following.forEach(user => { %>
       <a href="/profile/<%= user._id %>"><%= user.name %></a>
     <% }) %>
   </div>
-  <div class="profile-right">
+  <div id="profile-right">
 
     <h2><%= isSelf ? "My" : profile.name+"'s" %> Post</h2>
     <% profile.myPost.forEach(post => { %>
       <div>
         <a href="/posts/<%= post._id %>"><%= post.topic %></a>
-        <p><%= post.location %></p>
+        <p><%= post.location %>, <%= post.state %></p>
         <p><%= post.date.toISOString().slice(0,10) %></p>
       </div>
     <% }) %>
@@ -31,7 +32,7 @@
     <% savedPosts.forEach(post => { %>
       <div>
         <a href="/posts/<%= post._id %>"><%= post.topic %></a>
-        <p><%= post.location %></p>
+        <p><%= post.location %>, <%= post.state %></p>
         <p><%= post.date.toISOString().slice(0,10) %></p>
       </div>
     <% }) %>

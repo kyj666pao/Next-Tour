@@ -1,4 +1,5 @@
 <%- include('../partials/html-head') %> 
+  <link rel="stylesheet" href="/stylesheets/main.css" />
 <%- include('../partials/nav') %>
 
 <main class="one-post">
@@ -8,7 +9,7 @@
     <img class="content-img" src="<%= posts.photo %>" alt="" />
     <p><%= posts.content %></p>
     <h4 class="author">Author: <a href="/profile/<%= posts.author._id %>"><%= posts.author.name %></a></h4>
-    <h4><%= posts.location %></h4>
+    <h4><%= posts.location %>, <%= posts.state %></h4>
   </div>
   <% if(posts.author.equals(user?.profile._id)) { %>
   <div class="author-edit-delete">
