@@ -27,6 +27,7 @@ router.get("/:profileId", isLoggedIn, (req,res) => {
     .populate([
         {path: "myPost"},
         {path: "savedPost"},
+        {path: "following"}
         ])
         .then(profile => {
             const isSelf = profile._id.equals(req.user.profile._id)
@@ -41,6 +42,30 @@ router.get("/:profileId", isLoggedIn, (req,res) => {
             // res.redirect("/")
             res.send("profile is not found")
         })
+})
+
+router.post("/:profileId/following", isLoggedIn, (req, res) => {
+    let { profileId } = req.params
+    let userId = req.user.profile._id
+    console.log("following:", profileId)
+    console.log("user:", userId)
+    Profile.findById(userId)
+    .then(profile => {
+        profile.following.push(profileId)
+        profile.save()
+            .then(()=>{
+                res.redirect(`/profile/${profileId}`)
+            })
+            .catch(err => {
+                console.log(err)
+                res.send("Failed to follow this author")
+            })
+    })
+    .catch(err => {
+        console.log(err)
+        res.send("Profile is not found")
+    })
+
 })
 
 export { router}

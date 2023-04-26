@@ -11,6 +11,9 @@ const profileSchema = new Schema({
   savedPost: [{
     type: Schema.Types.ObjectId, ref: "Post"
   }],
+  following: [{
+    type: Schema.Types.ObjectId, ref: "Profile"
+  }],
 }, {
   timestamps: true
 })
