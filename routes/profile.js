@@ -24,7 +24,10 @@ Profile.find()
 router.get("/:profileId", isLoggedIn, (req,res) => {
     let { profileId } = req.params
     Profile.findById(profileId)
-    .populate({path: "myPost"})
+    .populate([
+        {path: "myPost"},
+        {path: "savedPost"},
+        ])
         .then(profile => {
             const isSelf = profile._id.equals(req.user.profile._id)
                 res.render("profiles/show", {

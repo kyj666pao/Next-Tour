@@ -268,6 +268,7 @@ router.post("/:postId/saved", isLoggedIn, (req,res) => {
         profile.savedPost.push(postId)
         profile.save()
           .then(()=>{
+            console.log(profile)
             res.redirect(`/posts/${postId}`)
           })
           .catch(err => {
