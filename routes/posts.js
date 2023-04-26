@@ -7,9 +7,13 @@ import { Profile } from "../models/profile.js"
 
 // GET "/posts" postsCtrl.index
 router.get("/", (req,res) => {
-    // res.send("this is /post page")
     Post.find()
       .then(posts => {
+        posts.sort((a,b) => {
+          return b.date
+            .toISOString()
+            .localeCompare(a.date.toISOString() )
+        })
         res.render("posts/index", {
             posts,
             title: "All Post"
