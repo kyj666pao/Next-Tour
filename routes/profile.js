@@ -20,23 +20,24 @@ Profile.find()
     })
 })
 
-//GET "/profile/:profileId"
+//GET "/profile/:profileId" profileCtrl.show
 router.get("/:profileId", isLoggedIn, (req,res) => {
     let { profileId } = req.params
     Profile.findById(profileId)
-    .then(profile => {
-        const isSelf = profile._id.equals(req.user.profile._id)
-            res.render("profiles/show", {
-                profile,
-                isSelf,
-                title: `${profile.name}'s profile`
-            })
-    })
-    .catch(err => {
-        console.log(err)
-        // res.redirect("/")
-        res.send("profile is not found")
-    })
+    .populate({path: "myPost"})
+        .then(profile => {
+            const isSelf = profile._id.equals(req.user.profile._id)
+                res.render("profiles/show", {
+                    profile,
+                    isSelf,
+                    title: `${profile.name}'s profile`
+                })
+        })
+        .catch(err => {
+            console.log(err)
+            // res.redirect("/")
+            res.send("profile is not found")
+        })
 })
 
 export { router}

@@ -7,8 +7,14 @@
     <h4><%= profile.name %></h4>
   </div>
   <div class="profile-right">
-    <h2>Your Post</h2>
-    
+    <h2><%= isSelf ? "My" : profile.name+"'s" %> Post</h2>
+    <% profile.myPost.forEach(post => { %>
+      <div>
+        <a href="/posts/<%= post._id %>"><%= post.topic %></a>
+        <p><%= post.location %></p>
+        <p><%= post.date.toISOString().slice(0,10) %></p>
+      </div>
+    <% }) %>
   </div>
 </main>
 
