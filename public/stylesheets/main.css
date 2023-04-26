@@ -40,7 +40,8 @@
 }
 
 .QA input,
-.QA textarea {
+.QA textarea,
+.QA select {
     width: 462px;
     margin-left: 10px;
 }

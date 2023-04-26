@@ -5,6 +5,11 @@
   <div class="profile-left">
     <img src="<%= profile.avatar %>" alt="<%= profile.name %>'s avatar">
     <h4><%= profile.name %></h4>
+    <% if (!isSelf) { %>
+      <form action="/profile/<%= profile._id %>/following" method="POST">
+        <button type="submit">Follow</button>
+      </form>
+    <% } %>
   </div>
   <div class="profile-right">
 
