@@ -12,7 +12,10 @@ const destinationSchema = new Schema({
     },
     creator: {
         type: Schema.Types.ObjectId, ref: "Profile"
-    }
+    },
+    postOfThisDestination: [{
+        type: Schema.Types.ObjectId, ref: "Post"
+    }]
 }, {
     timestamps: true
 })

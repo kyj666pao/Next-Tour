@@ -21,4 +21,18 @@ router.get("/", (req,res) => {
         })
 })
 
+router.post("/",isLoggedIn, (req,res) => {
+    let userId = req.user.profile._id;
+    req.body.creator = userId
+    console.log(req.body)
+    Destination.create(req.body)
+        .then( destination => {
+            res.redirect("/destinations")
+        })
+        .catch(err => {
+            console.log(err)
+            res.redirect("/")
+        })
+})
+
 export { router }

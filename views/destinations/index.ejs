@@ -1,5 +1,5 @@
-<%- include('../partials/html-head') %> 
-  <link rel="stylesheet" href="/stylesheets/main.css" />
+<%- include('../partials/html-head') %>
+    <link rel="stylesheet" href="/stylesheets/main.css" />
 <%- include('../partials/nav') %>
 
 <h1><%= title %></h1>
@@ -7,7 +7,11 @@
   <div class="destinations">
     <% destinations.forEach(destination => { %>
     <div class="post">
-      <h3><a href="/destinations/<%= destination._id %>"><%= destination.name %></a></h3>
+      <h3>
+        <a href="/destinations/<%= destination._id %>"
+          ><%= destination.name %></a
+        >
+      </h3>
       <div class="discribe">
         <h5><%= destination.location %>, <%= destination.state %></h5>
       </div>
@@ -17,17 +21,26 @@
 
   <div class="destination-form">
     <h3>Cannot find your destination!? Create one</h3>
+    <% if (user) { %>
     <form action="/destinations" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" name="name" placeholder="Name of destination" required>
-        <label for="state">State:</label>
-        <select name="state" id="state">
-            <% states.forEach(state => { %>
-             <option value="<%= state %>"><%= state %></option>
-            <% }) %>
-        </select>
-        <button type="submit">Create this Destination</button>
+      <label for="name">Name:</label>
+      <input
+        type="text"
+        name="name"
+        placeholder="Name of destination"
+        required
+      />
+      <label for="state">State:</label>
+      <select name="state" id="state">
+        <% states.forEach(state => { %>
+        <option value="<%= state %>"><%= state %></option>
+        <% }) %>
+      </select>
+      <button type="submit">Create this Destination</button>
     </form>
+    <% } else { %>
+    <h4>Please Login to create Location . . .</h4>
+    <% } %>
   </div>
 </main>
 
