@@ -35,10 +35,12 @@
       </div>
       <div class="QA">
         <label for="state">State:</label>
-        <select name="state" id="state"></select>
+        <select name="state" id="state">
           <% state.forEach(state => { %>
             <option value="<%= state %>"><%= state %></option>
           <% }) %>
+        </select>
+          
       </div>
       <div class="QA">
         <label for="content">Content:</label>

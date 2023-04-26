@@ -11,7 +11,7 @@
     </div>
     <div class="nav-r">
       <% if (user) { %>
-      <a href="/profile">Profile</a>
+      <a href="/profile/<%= user.profile._id %>">Profile</a>
       <a href="/auth/logout" class="right">
         <button type="submit">Logout</button>
       </a>

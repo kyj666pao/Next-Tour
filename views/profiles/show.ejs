@@ -18,11 +18,12 @@
     <% }) %>
 
     <h2><%= isSelf ? "My" : profile.name+"'s" %> Saved Post</h2>
-    <% profile.savedPost.forEach(post => { %>
+    <% let savedPosts = [...new Set(profile.savedPost)] %>
+    <% savedPosts.forEach(post => { %>
       <div>
         <a href="/posts/<%= post._id %>"><%= post.topic %></a>
         <p><%= post.location %></p>
-        
+        <p><%= post.date.toISOString().slice(0,10) %></p>
       </div>
     <% }) %>
   </div>

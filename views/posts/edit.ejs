@@ -34,11 +34,13 @@
       </div>
       <div class="QA">
         <label for="state">State:</label>
-        <select name="state" id="state"></select>
+        <select name="state" id="state">
           <option value="<%= posts.state %>" selected><%= posts.state %></option>
           <% state.forEach(state => { %>
             <option value="<%= state %>"><%= state %></option>
           <% }) %>
+        </select>
+          
       </div>
       <div class="QA">
         <label for="content">Content:</label>
