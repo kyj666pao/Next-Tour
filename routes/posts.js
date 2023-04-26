@@ -69,12 +69,12 @@ router.get("/:postId", (req,res) => {
     {path: "comments.author"}
   ])
     .then(posts => {
-      const isSelf = posts.author.equals(req.user.profile._id)
+      // const isSelf = posts.author.equals(req.user.profile._id)
       console.log(posts)
       res.render("posts/show", {
         posts,
         title: "The Tour",
-        isSelf,
+        // isSelf,
       })
     })
     .catch(err => {
@@ -256,6 +256,34 @@ router.delete("/:postId/comments/:commentId", isLoggedIn, (req,res) => {
       console.log(err)
       res.send("This post is not Found")
     })
+})
+
+router.post("/:postId/saved", isLoggedIn, (req,res) => {
+  let { postId } = req.params
+  let userId = req.user.profile._id; 
+  Post.findById(postId)
+  .then(posts => {
+    Profile.findById(userId)
+      .then(profile => {
+        profile.savedPost.push(postId)
+        profile.save()
+          .then(()=>{
+            res.redirect(`/posts/${postId}`)
+          })
+          .catch(err => {
+            console.log(err)
+            res.redirect("/")
+          })
+      })
+      .catch(err => {
+        console.log(err)
+        res.redirect("/")
+      })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect("/")
+  })
 })
 
 export { router }

@@ -19,7 +19,7 @@
   </div>
   <% } %> 
   <% if (user) { %>
-    <% if (!isSelf) { %>
+    <% if (!posts.author.equals(user?.profile._id)) { %>
       <div class="savePost">
         <form action="/posts/<%= posts._id %>/saved" method="POST">
           <button type="submit">Save to list</button>
