@@ -14,6 +14,21 @@
     </div>
     <% }); %>
   </div>
+
+  <div class="destination-form">
+    <h3>Cannot find your destination!? Create one</h3>
+    <form action="/destinations" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="name" placeholder="Name of destination" required>
+        <label for="state">State:</label>
+        <select name="state" id="state">
+            <% states.forEach(state => { %>
+             <option value="<%= state %>"><%= state %></option>
+            <% }) %>
+        </select>
+        <button type="submit">Create this Destination</button>
+    </form>
+  </div>
 </main>
 
 <%- include('../partials/footer') %>
