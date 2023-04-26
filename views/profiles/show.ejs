@@ -10,6 +10,10 @@
         <button type="submit">Follow</button>
       </form>
     <% } %>
+    <h3>Following:</h3>
+    <% profile.following.forEach(user => { %>
+      <a href="/profile/<%= user._id %>"><%= user.name %></a>
+    <% }) %>
   </div>
   <div class="profile-right">
 
