@@ -4,14 +4,12 @@
 
 <h1><%= title %></h1>
 <main>
-  <div class="all-post">
-    <% posts.forEach(post => { %>
+  <div class="destinations">
+    <% destinations.forEach(destination => { %>
     <div class="post">
-      <h3><a href="/posts/<%= post._id %>"><%= post.topic %></a></h3>
-      <img src="<%= post.photo %>" alt="" />
+      <h3><a href="/destinations/<%= destination._id %>"><%= destination.name %></a></h3>
       <div class="discribe">
-        <h5><%= post.location %>, <%= post.state %></h5>
-        <h5><%= post.date.toISOString().slice(0,10) %></h5>
+        <h5><%= destination.location %>, <%= destination.state %></h5>
       </div>
     </div>
     <% }); %>
