@@ -55,9 +55,11 @@
 .post-content,
 .author-edit-delete,
 .add-comment,
-.comment {
+.comment,
+.savePost {
     width: 80%;
     max-width: 720px;
+    min-width: 340px;
     
 }
 
@@ -65,13 +67,15 @@
     width: 100%;
 }
 
-.author-edit-delete {
+.author-edit-delete,
+.savePost {
     display: flex;
     justify-content: flex-end;
 }
 
 .author-edit-delete a,
-.author-edit-delete form {
+.author-edit-delete form,
+.savePost form {
     margin: 5px 10px;
 }
 
@@ -79,16 +83,19 @@
     border-top: 2px solid grey;
 }
 
-
 .add-comment form {
+    margin: 15px 0;
     display: flex;
-    /* flex-direction: column; */
-    align-items: center;
+    align-items: flex-start;
 }
 
 .add-comment textarea {
     width: 80%;
     margin: 10px 25px;
+}
+
+.add-comment button {
+    margin: 10px;
 }
 
 .comment {

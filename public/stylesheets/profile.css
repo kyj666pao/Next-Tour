@@ -1,3 +1,7 @@
+body {
+    background: rgb(233, 176, 71);;
+}
+
 .profile {
     width: 70vw;
     min-height: 100vh;

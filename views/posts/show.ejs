@@ -23,12 +23,12 @@
     <% if (!posts.author.equals(user?.profile._id)) { %>
       <div class="savePost">
         <form action="/posts/<%= posts._id %>/saved" method="POST">
-          <button type="submit">Save to list</button>
+          <button type="submit">Save To List</button>
         </form>
       </div>
     <% } %>
   <div class="add-comment">
-    <form action="/posts/<%= posts._id %>/comments" method="POST">
+    <form class="comment-form" action="/posts/<%= posts._id %>/comments" method="POST">
       <textarea
         name="content"
         id="comment-text"
