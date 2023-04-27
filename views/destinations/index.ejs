@@ -1,19 +1,19 @@
 <%- include('../partials/html-head') %>
-    <link rel="stylesheet" href="/stylesheets/main.css" />
+<link rel="stylesheet" href="/stylesheets/destination.css" />
 <%- include('../partials/nav') %>
 
 <h1><%= title %></h1>
 <main>
-  <div class="destinations">
+  <div class="all-destinations">
     <% destinations.forEach(destination => { %>
-    <div class="post">
+    <div class="destinations">
       <h3>
         <a href="/destinations/<%= destination._id %>"
           ><%= destination.name %></a
         >
       </h3>
       <div class="discribe">
-        <h5><%= destination.location %>, <%= destination.state %></h5>
+        <h5><%= destination.state %></h5>
       </div>
     </div>
     <% }); %>

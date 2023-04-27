@@ -1,0 +1,31 @@
+<%- include('../partials/html-head') %>
+<link rel="stylesheet" href="/stylesheets/destination.css" />
+<%- include('../partials/nav') %>
+
+<h1><%= title %></h1>
+<main>
+  <div class="all-destinations">
+    <% destinations.forEach(destination => { %>
+    <div class="destinations">
+      <h3>
+        <a href="/destinations/<%= destination._id %>"
+          ><%= destination.name %></a
+        >
+      </h3>
+      <div class="discribe">
+        <h5><%= destination.state %></h5>
+      </div>
+    </div>
+    <% }); %>
+  </div>
+
+  <h2><%= destination.name %> is destination of these trips</h2>
+  <% destination.postOfThisDestination.forEach(post => { %>
+    <div class="post">
+        <h3><a href="/posts/<%= post._id %>"><%= post.topic %></a></h3>
+        
+    </div>
+  <% }) %>
+</main>
+
+<%- include('../partials/footer') %>

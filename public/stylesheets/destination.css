@@ -1,0 +1,26 @@
+main {
+    display: flex;
+    justify-content: center;
+}
+
+.all-destinations {
+    width: 80vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.destinations {
+    width: 300px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: aliceblue;
+    border: 2px solid grey;
+    padding: 0 10px;
+}
+
+.destinations h3,
+.destinations h5 {
+    margin: 5px 0;
+}
+
