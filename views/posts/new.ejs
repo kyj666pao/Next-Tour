@@ -12,7 +12,7 @@
           type="text"
           name="topic"
           id="topic"
-          placeholder="Add a attractive topic"
+          placeholder="Add an attraction or Add a site"
           required
         />
       </div>
@@ -25,18 +25,33 @@
           placeholder="Link(url) of best photo of this trip"
         />
       </div>
+
+      <p>Select the destination from the list:</p>
+      <div class="QA">
+        <label for="destination">Location</label>
+        <select name="destinationId" id="">
+          <option value="" selected> </option>
+          <% destinations.forEach(destination => { %>
+           <option value="<%= destination._id %>"
+            ><%= destination.name %>, <%= destination.state %></option>
+          <% }) %>
+        </select>
+      </div>
+
+      <p>Your destination is not on list? Add this location</p>
       <div class="QA">
         <label for="location">Location</label>
         <input
           type="text"
           name="location"
           id="location"
-          placeholder="Where is the destination"
+          placeholder="Add the name of the destination"
         />
       </div>
       <div class="QA">
         <label for="state">State:</label>
         <select name="state" id="state">
+          <option value=""> </option>
           <% state.forEach(state => { %>
             <option value="<%= state %>"><%= state %></option>
           <% }) %>

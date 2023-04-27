@@ -2,7 +2,7 @@ import { Router } from "express";
 import { isLoggedIn } from "../middleware/middleware.js"
 const router = Router()
 
-import { Destination } from "../models/dextination.js";
+import { Destination } from "../models/destination.js";
 import { Profile } from "../models/profile.js";
 
 // GET "/destinations"
@@ -33,6 +33,22 @@ router.post("/",isLoggedIn, (req,res) => {
             console.log(err)
             res.redirect("/")
         })
+})
+
+router.get("/:destinationId", (req, res) => {
+    let { destinationId } = req.params
+    Destination.findById(destinationId)
+      .populate({path: "postOfThisDestination"})
+      .then(destination => {
+        res.render("destinations/show", {
+            destination,
+            title: destination.name
+        })
+      })
+      .catch(err => {
+        console.log(err)
+        res.redirect("/")
+      })
 })
 
 export { router }
