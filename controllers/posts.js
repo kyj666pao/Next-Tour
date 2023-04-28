@@ -221,7 +221,6 @@ const create = (req, res) => {
       .then((destination) => {
         req.body.location = destination.name;
         req.body.state = destination.state;
-        console.log("-----req.body:", req.body);
         Post.create(req.body)
           .then((posts) => {
             destination.postOfThisDestination.push(posts._id);
@@ -231,31 +230,14 @@ const create = (req, res) => {
                 Profile.findById(userId)
                   .then((profiles) => {
                     profiles.myPost.push(posts._id);
-                    console.log("profiles:", profiles);
                     profiles
                       .save()
                       .then(() => {
                         res.redirect("/posts");
                       })
-                      .catch((err) => {
-                        console.log(err);
-                        res.send("post is not saved into profile.myPost");
-                      });
                   })
-                  .catch((err) => {
-                    console.log(err);
-                    res.send("userId is not found");
-                  });
               })
-              .catch((err) => {
-                console.log(err);
-                res.redirect("/");
-              });
           })
-          .catch((err) => {
-            console.log(err);
-            res.redirect("/");
-          });
       })
       .catch((err) => {
         console.log(err);
@@ -265,7 +247,6 @@ const create = (req, res) => {
     Post.create(req.body)
       .then((posts) => {
         req.body.name = req.body.location;
-        console.log(req.body);
         Destination.create(req.body)
           .then((destination) => {
             destination.postOfThisDestination.push(posts._id);
@@ -275,35 +256,18 @@ const create = (req, res) => {
                 Profile.findById(userId)
                   .then((profiles) => {
                     profiles.myPost.push(posts._id);
-                    console.log("profiles:", profiles);
                     profiles
                       .save()
                       .then(() => {
                         res.redirect("/posts");
                       })
-                      .catch((err) => {
-                        console.log(err);
-                        res.send("post is not saved into profile.myPost");
-                      });
                   })
-                  .catch((err) => {
-                    console.log(err);
-                    res.send("userId is not found");
-                  });
               })
-              .catch((err) => {
-                console.log(err);
-                res.redirect("/");
-              });
           })
-          .catch((err) => {
-            console.log(err);
-            res.redirect("/");
-          });
       })
       .catch((err) => {
         console.log(err);
-        res.redirect("/posts");
+        res.redirect("/");
       });
   }
 };
@@ -314,22 +278,16 @@ const addComment = (req, res) => {
   Post.findById(postId)
     .then((posts) => {
       req.body.author = req.user.profile._id;
-      console.log(req.body);
       posts.comments.push(req.body);
-      console.log(posts);
       posts
         .save()
         .then(() => {
           res.redirect(`/posts/${postId}`);
         })
-        .catch((err) => {
-          console.log(err);
-          res.send("Failed to add comment");
-        });
     })
     .catch((err) => {
       console.log(err);
-      res.send("This post is not found");
+      res.redirect("/");
     });
 };
 
@@ -344,32 +302,22 @@ const update = (req, res) => {
           .then(() => {
             res.redirect(`/posts/${postId}`);
           })
-          .catch((err) => {
-            console.log(err);
-            // res.redirect("/")
-            res.send("Failed to updated the post");
-          });
       } else {
         throw new Error("🚫 Not authorized 🚫");
       }
     })
     .catch((err) => {
       console.log(err);
-      // res.redirect("/")
-      res.send("Post Id is not found");
+      res.redirect("/");
     });
 };
 
 // PUT "/posts/:postId/comments/:commentId" postsCtrl.updateComment
 const updateComment = (req, res) => {
   let { postId, commentId } = req.params;
-  console.log("postId:", postId);
-  console.log("commentId", commentId);
   Post.findById(postId)
     .then((posts) => {
-      console.log(posts);
       const comment = posts.comments.id(commentId);
-      console.log(comment);
       if (comment.author.equals(req.user.profile._id)) {
         comment.set(req.body);
         posts
@@ -377,17 +325,13 @@ const updateComment = (req, res) => {
           .then(() => {
             res.redirect(`/posts/${postId}`);
           })
-          .catch((err) => {
-            console.log(err);
-            res.send("Failed to update comment");
-          });
       } else {
         throw new Error("🚫 Not authorized 🚫");
       }
     })
     .catch((err) => {
       console.log(err);
-      res.send("This post is not Found");
+      res.redirect("/");
     });
 };
 
@@ -402,19 +346,13 @@ const deletePost = (req, res) => {
           .then(() => {
             res.redirect("/posts");
           })
-          .catch((err) => {
-            console.log(err);
-            // res.redirect("/")
-            res.send("Failed to delete the post");
-          });
       } else {
         throw new Error("🚫 Not authorized 🚫");
       }
     })
     .catch((err) => {
       console.log(err);
-      // res.redirect("/")
-      res.send("Post Id is not found");
+      res.redirect("/");
     });
 };
 
@@ -424,7 +362,6 @@ const deleteComment = (req, res) => {
   Post.findById(postId)
     .then((posts) => {
       const comment = posts.comments.id(commentId);
-      console.log(comment);
       if (comment.author.equals(req.user.profile._id)) {
         posts.comments.remove(comment);
         posts
@@ -432,16 +369,13 @@ const deleteComment = (req, res) => {
           .then(() => {
             res.redirect(`/posts/${postId}`);
           })
-          .catch((err) => {
-            res.send("Failed to delete this comment");
-          });
       } else {
         throw new Error("🚫 Not authorized 🚫");
       }
     })
     .catch((err) => {
       console.log(err);
-      res.send("This post is not Found");
+      res.redirect("/");
     });
 };
 
@@ -457,7 +391,6 @@ const addToSaved = (req, res) => {
           profile
             .save()
             .then(() => {
-              console.log(profile);
               res.redirect(`/posts/${postId}`);
             })
             .catch((err) => {
@@ -465,10 +398,6 @@ const addToSaved = (req, res) => {
               res.redirect("/");
             });
         })
-        .catch((err) => {
-          console.log(err);
-          res.redirect("/");
-        });
     })
     .catch((err) => {
       console.log(err);
