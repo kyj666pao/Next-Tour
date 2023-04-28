@@ -26,7 +26,7 @@ Define your best tour!
 
 ## Attributions
 * icon from [iconmonstr](https://iconmonstr.com/airport-7-svg/)
-* array of 50 state from [gits(tleen)](https://gist.github.com/tleen)
+* array of 50 state from [tleen's gits](https://gist.github.com/tleen/6299431)
 
 ## Ice Box
 - [x] Save articles to my list
