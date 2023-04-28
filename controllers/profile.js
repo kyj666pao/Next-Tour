@@ -59,5 +59,5 @@ const addToFollowing = (req, res) => {
 export { 
     index, 
     show, 
-    addToFollowing 
+    addToFollowing,
 };
