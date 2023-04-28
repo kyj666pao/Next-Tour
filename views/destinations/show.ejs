@@ -3,9 +3,7 @@
 <%- include('../partials/nav') %>
 
 <h1><%= title %></h1>
-<main>
-  
-
+<main class="each-destination">
   <h2>Post in <%= destination.name %>, <%= destination.state %></h2>
   <% destination.postOfThisDestination.forEach(post => { %>
     <div class="post">

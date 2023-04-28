@@ -26,6 +26,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    border-radius: 10px;
 }
 
 .form button {
@@ -46,9 +47,15 @@
     margin-left: 10px;
 }
 
+.location-note {
+    align-self: center;
+}
+
 .one-post {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -81,6 +88,7 @@
 
 .add-comment {
     border-top: 2px solid grey;
+    border-radius: 10px;
 }
 
 .add-comment form {
@@ -108,6 +116,7 @@
 }
 
 .comment-author img {
+    width: 70px;
     border-radius: 50%;
 }
 
@@ -122,10 +131,12 @@
 }
 
 .comment-textarea {
+    background-color: aliceblue;
     min-height: 96px;
     border: 2px solid grey;
     margin: 5px;
     padding: 3px 10px;
+    border-radius: 10px;
 }
 
 .comment-edit-delete {

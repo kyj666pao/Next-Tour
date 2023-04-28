@@ -1,6 +1,8 @@
 main {
+    min-height: 80vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .all-destinations {
@@ -17,10 +19,41 @@ main {
     background-color: aliceblue;
     border: 2px solid grey;
     padding: 0 10px;
+    border-radius: 10px;
 }
 
 .destinations h3,
 .destinations h5 {
     margin: 5px 0;
+}
+
+.destination-form {
+    margin-bottom: 1.5rem;
+    height: 200px;
+    background-color: aliceblue;
+    padding: 10px 24px;
+    border: 2px solid grey;
+    border-radius: 10px;
+}
+
+input,
+select,
+option {
+    font-size: 1rem;
+    padding: 4px;
+}
+
+.each-destination {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.post {
+    width: 60%;
+    background-color: aliceblue;
+    padding: 10px 24px;
+    border: 2px solid grey;
+    border-radius: 10px;
 }
 

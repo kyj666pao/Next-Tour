@@ -25,12 +25,14 @@ Define your best tour!
 * Google OAuth
 
 ## Attributions
+* icon from [iconmonstr](https://iconmonstr.com/airport-7-svg/)
+* array of 50 state from [gits(tleen)](https://gist.github.com/tleen)
 
 ## Ice Box
--[x] Save articles to my list
--[x] Follow other authors
--[ ] Add a search bar
--[ ] Login by email
--[ ] Add a google map of destination
+- [x] Save articles to my list
+- [x] Follow other authors
+- [ ] Add a search bar
+- [ ] Login by email
+- [ ] Add a google map of destination
 
 

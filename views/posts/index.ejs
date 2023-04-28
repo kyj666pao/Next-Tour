@@ -1,5 +1,5 @@
-<%- include('../partials/html-head') %> 
-  <link rel="stylesheet" href="/stylesheets/main.css" />
+<%- include('../partials/html-head') %>
+<link rel="stylesheet" href="/stylesheets/main.css" />
 <%- include('../partials/nav') %>
 
 <h1><%= title %></h1>
@@ -7,7 +7,12 @@
   <div class="all-post">
     <% posts.forEach(post => { %>
     <div class="post">
-      <h3><a href="/posts/<%= post._id %>"><%= post.topic %></a></h3>
+      <h3>
+        <a href="/posts/<%= post._id %>"
+          ><% if (post.topic.length > 30) { %><%= post.topic.slice(0,30) %>...
+          <% } else { %><%= post.topic %><% } %>
+        </a>
+      </h3>
       <img src="<%= post.photo %>" alt="" />
       <div class="discribe">
         <h5><%= post.location %>, <%= post.state %></h5>

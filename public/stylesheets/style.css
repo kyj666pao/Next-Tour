@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  background-color: #f6f6f6;
+  background: linear-gradient(45deg, rgb(173, 241, 94), rgb(37, 241, 190));
   color: #1a1a1a;
   /* Use a system font, if none are available use any found sans-sarif font */
   font-family: system-ui, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 
@@ -64,6 +64,10 @@ a {
   border: none;
   background-color: #1a1a1a;
   color: whitesmoke
+}
+
+h1 {
+  text-align: center;
 }
 
 

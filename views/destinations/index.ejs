@@ -32,6 +32,7 @@
       />
       <label for="state">State:</label>
       <select name="state" id="state">
+        <option value=""> </option>
         <% states.forEach(state => { %>
         <option value="<%= state %>"><%= state %></option>
         <% }) %>
