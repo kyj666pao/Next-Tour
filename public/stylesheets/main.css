@@ -18,6 +18,12 @@
     padding: 0 4px;
 }
 
+.post img {
+    max-height: 250px;
+    width: fit-content;
+    align-self: center;
+}
+
 .form {
     width: 600px;
     background-color: aliceblue;
