@@ -4,10 +4,11 @@
 
 ## [Start your Tour Here](https://next-tour.fly.dev/)
 
-What is Next-Tour? How is Next-Tour? 
-If you have a wonderful trip and want to share anything exciting or amazing scenery about it, don't hesitate to post it!
-If you are planning a lovely trip, find a post of your destination and get some ideas, then what you want will happen in the next tour! 
-If you have a list of best kept secret places or forgotten mystery destinations, make the world knows where they are!
+What is Next-Tour? How does Next-Tour work? 
+If you have a wonderful trip and want to share an exciting activity or amazing scenery, don't hesitate to post it!
+If you are planning a lovely trip, find a post from a bucket list destination and get some ideas, then the picture of imagination will come true in the next tour! 
+If you have a list of best-kept secret places or forgotten mystery destinations, share it with the world!
+
 Define your best tour!
 
 ## [Planning Materials](https://trello.com/b/B9tsw0kp/next-tour)
