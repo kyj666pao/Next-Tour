@@ -55,16 +55,17 @@ a {
 .nav-r a {
   margin: 0 5px;
   font-weight: 700;
+  color: #2E91ED;
 }
 
-.active {
+a.active {
   color: orange
 }
 
 .nav-r a button {
   border: none;
   background-color: #1a1a1a;
-  color: whitesmoke
+  color: black
 }
 
 h1 {
@@ -73,6 +74,7 @@ h1 {
 
 button {
   color: black;
+  font-weight: 800;
   padding: 5px 10px;
   background: linear-gradient(225deg, rgb(56, 124, 201), rgb(6, 230, 174));
   border: none;

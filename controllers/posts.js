@@ -276,10 +276,10 @@ const create = (req, res) => {
 const addComment = (req, res) => {
   let { postId } = req.params;
   Post.findById(postId)
-    .then((posts) => {
+    .then((post) => {
       req.body.author = req.user.profile._id;
-      posts.comments.push(req.body);
-      posts
+      post.comments.push(req.body);
+      post
         .save()
         .then(() => {
           res.redirect(`/posts/${postId}`);
@@ -295,9 +295,9 @@ const addComment = (req, res) => {
 const update = (req, res) => {
   let { postId } = req.params;
   Post.findById(postId)
-    .then((posts) => {
-      if (posts.author.equals(req.user.profile._id)) {
-        posts
+    .then((post) => {
+      if (post.author.equals(req.user.profile._id)) {
+        post
           .updateOne(req.body)
           .then(() => {
             res.redirect(`/posts/${postId}`);
@@ -316,11 +316,11 @@ const update = (req, res) => {
 const updateComment = (req, res) => {
   let { postId, commentId } = req.params;
   Post.findById(postId)
-    .then((posts) => {
-      const comment = posts.comments.id(commentId);
+    .then((post) => {
+      const comment = post.comments.id(commentId);
       if (comment.author.equals(req.user.profile._id)) {
         comment.set(req.body);
-        posts
+        post
           .save()
           .then(() => {
             res.redirect(`/posts/${postId}`);
@@ -339,9 +339,9 @@ const updateComment = (req, res) => {
 const deletePost = (req, res) => {
   let { postId } = req.params;
   Post.findById(postId)
-    .then((posts) => {
-      if (posts.author.equals(req.user.profile._id)) {
-        posts
+    .then((post) => {
+      if (post.author.equals(req.user.profile._id)) {
+        post
           .deleteOne()
           .then(() => {
             res.redirect("/posts");
@@ -360,11 +360,11 @@ const deletePost = (req, res) => {
 const deleteComment = (req, res) => {
   let { postId, commentId } = req.params;
   Post.findById(postId)
-    .then((posts) => {
-      const comment = posts.comments.id(commentId);
+    .then((post) => {
+      const comment = post.comments.id(commentId);
       if (comment.author.equals(req.user.profile._id)) {
-        posts.comments.remove(comment);
-        posts
+        post.comments.remove(comment);
+        post
           .save()
           .then(() => {
             res.redirect(`/posts/${postId}`);
@@ -384,7 +384,7 @@ const addToSaved = (req, res) => {
   let { postId } = req.params;
   let userId = req.user.profile._id;
   Post.findById(postId)
-    .then((posts) => {
+    .then((post) => {
       Profile.findById(userId)
         .then((profile) => {
           profile.savedPost.push(postId);
