@@ -72,7 +72,7 @@ h1 {
 }
 
 button {
-  color: white;
+  color: black;
   padding: 5px 10px;
   background: linear-gradient(225deg, rgb(56, 124, 201), rgb(6, 230, 174));
   border: none;

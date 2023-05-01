@@ -101,9 +101,9 @@ const show = (req, res) => {
   let { postId } = req.params;
   Post.findById(postId)
     .populate([{ path: "author" }, { path: "comments.author" }])
-    .then((posts) => {
+    .then((post) => {
       res.render("posts/show", {
-        posts,
+        post,
         title: "The Tour",
       });
     })
@@ -117,9 +117,9 @@ const show = (req, res) => {
 const edit = (req, res) => {
   let { postId } = req.params;
   Post.findById(postId)
-    .then((posts) => {
+    .then((post) => {
       res.render("posts/edit", {
-        posts,
+        post,
         title: "Edit Post",
         state: [
           "Alabama",
@@ -194,11 +194,11 @@ const edit = (req, res) => {
 const editComment = (req, res) => {
   let { postId, commentId } = req.params;
   Post.findById(postId)
-    .then((posts) => {
-      const comment = posts.comments.id(commentId);
+    .then((post) => {
+      const comment = post.comments.id(commentId);
       if (comment.author.equals(req.user.profile._id)) {
         res.render("posts/editComment", {
-          posts,
+          post,
           comment,
           title: "Edit Comment",
         });
@@ -222,14 +222,14 @@ const create = (req, res) => {
         req.body.location = destination.name;
         req.body.state = destination.state;
         Post.create(req.body)
-          .then((posts) => {
-            destination.postOfThisDestination.push(posts._id);
+          .then((post) => {
+            destination.postOfThisDestination.push(post._id);
             destination
               .save()
               .then(() => {
                 Profile.findById(userId)
                   .then((profiles) => {
-                    profiles.myPost.push(posts._id);
+                    profiles.myPost.push(post._id);
                     profiles
                       .save()
                       .then(() => {
@@ -245,17 +245,17 @@ const create = (req, res) => {
       });
   } else {
     Post.create(req.body)
-      .then((posts) => {
+      .then((post) => {
         req.body.name = req.body.location;
         Destination.create(req.body)
           .then((destination) => {
-            destination.postOfThisDestination.push(posts._id);
+            destination.postOfThisDestination.push(post._id);
             destination
               .save()
               .then(() => {
                 Profile.findById(userId)
                   .then((profiles) => {
-                    profiles.myPost.push(posts._id);
+                    profiles.myPost.push(post._id);
                     profiles
                       .save()
                       .then(() => {

@@ -16,6 +16,7 @@
     justify-content: space-between;
     border: 2px solid grey;
     padding: 0 4px;
+    overflow: hidden;
 }
 
 .post img {

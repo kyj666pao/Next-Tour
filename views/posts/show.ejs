@@ -4,31 +4,31 @@
 
 <main class="one-post">
   <div class="post-content">
-    <h2><%= posts.topic %></h2>
-    <h5><%= posts.date.toISOString().slice(0,10) %></h5>
-    <img class="content-img" src="<%= posts.photo %>" alt="" />
-    <p><%= posts.content %></p>
-    <h4 class="author">Author: <a href="/profile/<%= posts.author._id %>"><%= posts.author.name %></a></h4>
-    <h4><%= posts.location %>, <%= posts.state %></h4>
+    <h2><%= post.topic %></h2>
+    <h5><%= post.date.toISOString().slice(0,10) %></h5>
+    <img class="content-img" src="<%= post.photo %>" alt="" />
+    <p><%= post.content %></p>
+    <h4 class="author">Author: <a href="/profile/<%= post.author._id %>"><%= post.author.name %></a></h4>
+    <h4><%= post.location %>, <%= post.state %></h4>
   </div>
-  <% if(posts.author.equals(user?.profile._id)) { %>
+  <% if(post.author.equals(user?.profile._id)) { %>
   <div class="author-edit-delete">
-    <a href="/posts/<%= posts._id %>/edit"><button>Edit This Post</button></a>
-    <form action="/posts/<%= posts._id %>?_method=DELETE" method="POST">
+    <a href="/posts/<%= post._id %>/edit"><button>Edit This Post</button></a>
+    <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
       <button type="submit">Delete This Post</button>
     </form>
   </div>
   <% } %> 
   <% if (user) { %>
-    <% if (!posts.author.equals(user?.profile._id)) { %>
+    <% if (!post.author.equals(user?.profile._id)) { %>
       <div class="savePost">
-        <form action="/posts/<%= posts._id %>/saved" method="POST">
+        <form action="/posts/<%= post._id %>/saved" method="POST">
           <button type="submit">Save To List</button>
         </form>
       </div>
     <% } %>
   <div class="add-comment">
-    <form class="comment-form" action="/posts/<%= posts._id %>/comments" method="POST">
+    <form class="comment-form" action="/posts/<%= post._id %>/comments" method="POST">
       <textarea
         name="content"
         id="comment-text"
@@ -43,7 +43,7 @@
     <p style="color: red">Please login to leave comment . . .</p>
   </div>
   <% } %> 
-  <% posts.comments.forEach(comment => { %>
+  <% post.comments.forEach(comment => { %>
   <div class="comment">
     <div class="comment-author">
       <img
@@ -58,11 +58,11 @@
       </div>
       <% if (comment.author.equals(user?.profile._id)) { %>
       <div class="comment-edit-delete">
-        <a href="/posts/<%= posts._id %>/comments/<%= comment._id %>/edit">
+        <a href="/posts/<%= post._id %>/comments/<%= comment._id %>/edit">
           <button>Edit this comment</button>
         </a>
         <form
-          action="/posts/<%= posts._id %>/comments/<%= comment._id %>?_method=DELETE"
+          action="/posts/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE"
           method="POST"
         >
           <button type="submit">Delete this comment</button>
